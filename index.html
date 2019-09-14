@@ -156,6 +156,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java-NIO-教程-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/Java-NIO-教程-0/">Java NIO 教程 0</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/Java-NIO-教程-0/" class="archive-article-date">
+  	<time datetime="2019-09-14T15:11:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a href="http://ifeve.com/java-nio-all/" target="_blank" rel="noopener">http://ifeve.com/java-nio-all/</a><br><a href="http://tutorials.jenkov.com/java-nio/index.html" target="_blank" rel="noopener">原文地址</a></p>
+<p>Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。</p>
+<h1 id="Java-NIO-Channels-and-Buffers（通道和缓冲区）"><a href="#Java-NIO-Channels-and-Buffers（通道和缓冲区）" class="headerlink" title="Java NIO: Channels and Buffers（通道和缓冲区）"></a>Java NIO: Channels and Buffers（通道和缓冲区）</h1><p>标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。</p>
+<h1 id="Java-NIO-Non-blocking-IO（非阻塞IO）"><a href="#Java-NIO-Non-blocking-IO（非阻塞IO）" class="headerlink" title="Java NIO: Non-blocking IO（非阻塞IO）"></a>Java NIO: Non-blocking IO（非阻塞IO）</h1><p>Java NIO可以让你非阻塞的使用IO，例如：当线程从通道读取数据到缓冲区时，线程还是可以进行其他事情。当数据被写入到缓冲区时，线程可以继续处理它。从缓冲区写入通道也类似。</p>
+<h1 id="Java-NIO-Selectors（选择器）"><a href="#Java-NIO-Selectors（选择器）" class="headerlink" title="Java NIO: Selectors（选择器）"></a>Java NIO: Selectors（选择器）</h1><p>Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道。</p>
+<p>下面为正文链接列表</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/f22fa0199f91" target="_blank" rel="noopener">Java NIO 教程(一) 概述</a></li>
+<li><a href="http://www.jianshu.com/p/1ecacad9beb5" target="_blank" rel="noopener">Java NIO 教程(二) Channel</a></li>
+<li><a href="http://www.jianshu.com/p/6066eab2ecfc" target="_blank" rel="noopener">Java NIO 教程(三) Buffer</a></li>
+<li><a href="http://www.jianshu.com/p/d5573d01a690" target="_blank" rel="noopener">Java NIO 教程(四) Scatter/Gather</a></li>
+<li><a href="http://www.jianshu.com/p/fdf72be99d76" target="_blank" rel="noopener">Java NIO 教程(五) 通道之间的数据传输</a></li>
+<li><a href="http://www.jianshu.com/p/f9f5df460883" target="_blank" rel="noopener">Java NIO 教程(六) Selector</a></li>
+<li><a href="http://www.jianshu.com/p/ab7044548e08" target="_blank" rel="noopener">Java NIO 教程(七) FileChannel</a></li>
+<li><a href="http://www.jianshu.com/p/eeed1c7aec2d" target="_blank" rel="noopener">Java NIO 教程(八) SocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/2b658824ed76" target="_blank" rel="noopener">Java NIO 教程(九) ServerSocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/7ded19c8c1e8" target="_blank" rel="noopener">Java NIO 教程(十) 非阻塞式服务器</a></li>
+<li><a href="http://www.jianshu.com/p/1b1e1849344c" target="_blank" rel="noopener">Java NIO 教程(十一) Java NIO DatagramChannel</a></li>
+<li><a href="http://www.jianshu.com/p/d232a66cbf9a" target="_blank" rel="noopener">Java NIO 教程(十二) Pipe</a></li>
+<li><a href="http://www.jianshu.com/p/7d193c0ad484" target="_blank" rel="noopener">Java NIO 教程(十三) Java NIO vs. IO</a></li>
+<li><a href="http://www.jianshu.com/p/17b8e042a90b" target="_blank" rel="noopener">Java NIO 教程(十四) Java NIO Path</a></li>
+<li><a href="http://www.jianshu.com/p/3cb5ca04e3c8" target="_blank" rel="noopener">Java NIO 教程(十五) Java NIO Files</a></li>
+<li><a href="http://www.jianshu.com/p/b38f8c596193" target="_blank" rel="noopener">Java NIO 教程(十六) Java NIO AsynchronousFileChannel</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java,nio</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/Java-NIO-教程-0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-开通博客的第一篇文章，打打气" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -386,6 +483,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java,nio</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
