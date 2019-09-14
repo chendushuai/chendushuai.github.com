@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java NIO 教程 0 | 技术路线整理和个人分享</title>
+  <title>Java NIO 教程 2 Channel | 技术路线整理和个人分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考：http://ifeve.com/java-nio-all/原文地址 Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。 Java NIO: Channels and Buffers（通道和缓冲区）标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓">
+  <meta name="description" content="参考：http://ifeve.com/channels/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教">
 <meta name="keywords" content="java,nio,教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java NIO 教程 0">
-<meta property="og:url" content="http://yoursite.com/2019/09/14/Java-NIO-教程-0/index.html">
+<meta property="og:title" content="Java NIO 教程 2 Channel">
+<meta property="og:url" content="http://yoursite.com/2019/09/14/Java-NIO-教程-2-Channel/index.html">
 <meta property="og:site_name" content="技术路线整理和个人分享">
-<meta property="og:description" content="参考：http://ifeve.com/java-nio-all/原文地址 Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。 Java NIO: Channels and Buffers（通道和缓冲区）标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓">
+<meta property="og:description" content="参考：http://ifeve.com/channels/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-14T15:23:12.171Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5408072-723a35d697c0c1e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-14T16:05:26.758Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java NIO 教程 0">
-<meta name="twitter:description" content="参考：http://ifeve.com/java-nio-all/原文地址 Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。 Java NIO: Channels and Buffers（通道和缓冲区）标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓">
+<meta name="twitter:title" content="Java NIO 教程 2 Channel">
+<meta name="twitter:description" content="参考：http://ifeve.com/channels/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5408072-723a35d697c0c1e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="技术路线整理和个人分享" type="application/atom+xml">
   
@@ -159,33 +161,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-NIO-教程-0" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java-NIO-教程-2-Channel" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java NIO 教程 0
+      Java NIO 教程 2 Channel
     </h1>
   
 
         
-        <a href="/2019/09/14/Java-NIO-教程-0/" class="archive-article-date">
-  	<time datetime="2019-09-14T15:11:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+        <a href="/2019/09/14/Java-NIO-教程-2-Channel/" class="archive-article-date">
+  	<time datetime="2019-09-14T16:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考：<a href="http://ifeve.com/java-nio-all/" target="_blank" rel="noopener">http://ifeve.com/java-nio-all/</a><br><a href="http://tutorials.jenkov.com/java-nio/index.html" target="_blank" rel="noopener">原文地址</a></p>
-<p>Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。</p>
-<h1 id="Java-NIO-Channels-and-Buffers（通道和缓冲区）"><a href="#Java-NIO-Channels-and-Buffers（通道和缓冲区）" class="headerlink" title="Java NIO: Channels and Buffers（通道和缓冲区）"></a>Java NIO: Channels and Buffers（通道和缓冲区）</h1><p>标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。</p>
-<h1 id="Java-NIO-Non-blocking-IO（非阻塞IO）"><a href="#Java-NIO-Non-blocking-IO（非阻塞IO）" class="headerlink" title="Java NIO: Non-blocking IO（非阻塞IO）"></a>Java NIO: Non-blocking IO（非阻塞IO）</h1><p>Java NIO可以让你非阻塞的使用IO，例如：当线程从通道读取数据到缓冲区时，线程还是可以进行其他事情。当数据被写入到缓冲区时，线程可以继续处理它。从缓冲区写入通道也类似。</p>
-<h1 id="Java-NIO-Selectors（选择器）"><a href="#Java-NIO-Selectors（选择器）" class="headerlink" title="Java NIO: Selectors（选择器）"></a>Java NIO: Selectors（选择器）</h1><p>Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道。</p>
-<p>下面为正文链接列表</p>
-<ul>
+        <p>参考：<a href="http://ifeve.com/channels/" target="_blank" rel="noopener">http://ifeve.com/channels/</a><br><a href="http://tutorials.jenkov.com/java-nio/channels.html" target="_blank" rel="noopener">原文地址</a></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="http://www.jianshu.com/p/465ecd909f8c" target="_blank" rel="noopener">Java NIO教程</a></li>
 <li><a href="http://www.jianshu.com/p/f22fa0199f91" target="_blank" rel="noopener">Java NIO 教程(一) 概述</a></li>
 <li><a href="http://www.jianshu.com/p/1ecacad9beb5" target="_blank" rel="noopener">Java NIO 教程(二) Channel</a></li>
 <li><a href="http://www.jianshu.com/p/6066eab2ecfc" target="_blank" rel="noopener">Java NIO 教程(三) Buffer</a></li>
@@ -203,6 +201,26 @@
 <li><a href="http://www.jianshu.com/p/3cb5ca04e3c8" target="_blank" rel="noopener">Java NIO 教程(十五) Java NIO Files</a></li>
 <li><a href="http://www.jianshu.com/p/b38f8c596193" target="_blank" rel="noopener">Java NIO 教程(十六) Java NIO AsynchronousFileChannel</a></li>
 </ul>
+<p>Java NIO的通道类似流，但又有些不同：</p>
+<ul>
+<li>既可以从通道中读取数据，又可以写数据到通道。但流的读写通常是单向的。</li>
+<li>通道可以异步地读写。</li>
+<li>通道中的数据总是要先读到一个Buffer，或者总是要从一个Buffer中写入。</li>
+</ul>
+<p>正如上面所说，从通道读取数据到缓冲区，从缓冲区写入数据到通道。如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5408072-723a35d697c0c1e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="NIO 数据读写流程"></p>
+<h2 id="Channel的实现"><a href="#Channel的实现" class="headerlink" title="Channel的实现"></a>Channel的实现</h2><p>这些是Java NIO中最重要的通道的实现：</p>
+<p><code>FileChannel</code><br><code>DatagramChannel</code><br><code>SocketChannel</code><br><code>ServerSocketChannel</code></p>
+<ul>
+<li><code>FileChannel</code> 从文件中读写数据。</li>
+<li><code>DatagramChannel</code> 能通过UDP读写网络中的数据。</li>
+<li><code>SocketChannel</code> 能通过TCP读写网络中的数据。</li>
+<li><code>ServerSocketChannel</code>可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个<code>SocketChannel</code>。</li>
+</ul>
+<h2 id="基本的-Channel-示例"><a href="#基本的-Channel-示例" class="headerlink" title="基本的 Channel 示例"></a>基本的 Channel 示例</h2><p>下面是一个使用<code>FileChannel</code>读取数据到<code>Buffer</code>中的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">private static void useNio()&#123;</span><br><span class="line">    RandomAccessFile aFile = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        aFile = new RandomAccessFile(&quot;/Users/sschen/Documents/SerialVersion.txt&quot;, &quot;rw&quot;);</span><br><span class="line">        FileChannel inChannel = aFile.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(48);</span><br><span class="line">        int byteReader = inChannel.read(byteBuffer);</span><br><span class="line"></span><br><span class="line">        while (byteReader != -1) &#123;</span><br><span class="line">            System.out.println(&quot;Read:&quot; + byteReader);</span><br><span class="line">            byteBuffer.flip();</span><br><span class="line"></span><br><span class="line">            while (byteBuffer.hasRemaining()) &#123;</span><br><span class="line">                System.out.println((char)byteBuffer.get());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            byteBuffer.clear();</span><br><span class="line"></span><br><span class="line">            byteReader = inChannel.read(byteBuffer);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    finally &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            aFile.close();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意 <code>buf.flip()</code> 的调用，首先读取数据到<code>Buffer</code>，然后反转<code>Buffer</code>,接着再从<code>Buffer</code>中读取数据。下一节会深入讲解Buffer的更多细节。</p>
 
       
 
@@ -301,7 +319,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/14/Java-NIO-教程-0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/14/Java-NIO-教程-2-Channel/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -315,18 +333,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/14/Java-NIO-教程-1-概述/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java NIO 教程 1 概述
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/14/开通博客的第一篇文章，打打气/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">开通博客的第一篇文章，打打气</div>
+    <a href="/2019/09/14/Java-NIO-教程-1-概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java NIO 教程 1 概述</div>
       <i class="icon-circle-right"></i>
     </a>
   
