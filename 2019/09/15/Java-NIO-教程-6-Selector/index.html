@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 技术路线整理和个人分享</title>
+  <title>Java NIO 教程 6 Selector | 技术路线整理和个人分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="技术路线整理和个人分享">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="参考：http://ifeve.com/selectors/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO">
+<meta name="keywords" content="java,nio,教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java NIO 教程 6 Selector">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/Java-NIO-教程-6-Selector/index.html">
 <meta property="og:site_name" content="技术路线整理和个人分享">
+<meta property="og:description" content="参考：http://ifeve.com/selectors/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5408072-5b76ec216c32aa39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-15T23:30:17.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术路线整理和个人分享">
+<meta name="twitter:title" content="Java NIO 教程 6 Selector">
+<meta name="twitter:description" content="参考：http://ifeve.com/selectors/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5408072-5b76ec216c32aa39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="技术路线整理和个人分享" type="application/atom+xml">
   
@@ -154,36 +161,217 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Java-NIO-教程-6-Selector" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java NIO 教程 6 Selector
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-6-Selector/" class="archive-article-date">
+
+        
+        <a href="/2019/09/15/Java-NIO-教程-6-Selector/" class="archive-article-date">
   	<time datetime="2019-09-15T23:29:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-6-Selector/">Java NIO 教程 6 Selector</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a href="http://ifeve.com/selectors/" target="_blank" rel="noopener">http://ifeve.com/selectors/</a><br><a href="http://tutorials.jenkov.com/java-nio/selectors.html" target="_blank" rel="noopener">原文地址</a></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="http://www.jianshu.com/p/465ecd909f8c" target="_blank" rel="noopener">Java NIO教程</a></li>
+<li><a href="http://www.jianshu.com/p/f22fa0199f91" target="_blank" rel="noopener">Java NIO 教程(一) 概述</a></li>
+<li><a href="http://www.jianshu.com/p/1ecacad9beb5" target="_blank" rel="noopener">Java NIO 教程(二) Channel</a></li>
+<li><a href="http://www.jianshu.com/p/6066eab2ecfc" target="_blank" rel="noopener">Java NIO 教程(三) Buffer</a></li>
+<li><a href="http://www.jianshu.com/p/d5573d01a690" target="_blank" rel="noopener">Java NIO 教程(四) Scatter/Gather</a></li>
+<li><a href="http://www.jianshu.com/p/fdf72be99d76" target="_blank" rel="noopener">Java NIO 教程(五) 通道之间的数据传输</a></li>
+<li><a href="http://www.jianshu.com/p/f9f5df460883" target="_blank" rel="noopener">Java NIO 教程(六) Selector</a></li>
+<li><a href="http://www.jianshu.com/p/ab7044548e08" target="_blank" rel="noopener">Java NIO 教程(七) FileChannel</a></li>
+<li><a href="http://www.jianshu.com/p/eeed1c7aec2d" target="_blank" rel="noopener">Java NIO 教程(八) SocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/2b658824ed76" target="_blank" rel="noopener">Java NIO 教程(九) ServerSocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/7ded19c8c1e8" target="_blank" rel="noopener">Java NIO 教程(十) 非阻塞式服务器</a></li>
+<li><a href="http://www.jianshu.com/p/1b1e1849344c" target="_blank" rel="noopener">Java NIO 教程(十一) Java NIO DatagramChannel</a></li>
+<li><a href="http://www.jianshu.com/p/d232a66cbf9a" target="_blank" rel="noopener">Java NIO 教程(十二) Pipe</a></li>
+<li><a href="http://www.jianshu.com/p/7d193c0ad484" target="_blank" rel="noopener">Java NIO 教程(十三) Java NIO vs. IO</a></li>
+<li><a href="http://www.jianshu.com/p/17b8e042a90b" target="_blank" rel="noopener">Java NIO 教程(十四) Java NIO Path</a></li>
+<li><a href="http://www.jianshu.com/p/3cb5ca04e3c8" target="_blank" rel="noopener">Java NIO 教程(十五) Java NIO Files</a></li>
+<li><a href="http://www.jianshu.com/p/b38f8c596193" target="_blank" rel="noopener">Java NIO 教程(十六) Java NIO AsynchronousFileChannel</a></li>
+</ul>
+<p><code>Selector</code>（选择器）是Java NIO中能够检测一到多个NIO通道，并能够知晓通道是否为诸如读写事件做好准备的组件。这样，一个单独的线程可以管理多个<code>channel</code>，从而管理多个网络连接。</p>
+<h2 id="为什么使用Selector"><a href="#为什么使用Selector" class="headerlink" title="为什么使用Selector?"></a>为什么使用Selector?</h2><p>仅用单个线程来处理多个<code>Channel</code>的好处是：<strong>只需要更少的线程来处理通道</strong>。事实上，可以只用一个线程处理所有的通道。对于操作系统来说，线程之间上下文切换的开销很大，而且每个线程都要占用系统的一些资源（如内存）。因此，使用的线程越少越好。</p>
+<p>但是，需要记住，现代的操作系统和CPU在多任务方面表现的越来越好，所以多线程的开销随着时间的推移，变得越来越小了。实际上，如果一个CPU有多个内核，不使用多任务可能是在浪费CPU能力。不管怎么说，关于那种设计的讨论应该放在另一篇不同的文章中。在这里，只要知道使用Selector能够处理多个通道就足够了。</p>
+<p>下面是单线程使用一个Selector处理3个channel的示例图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5408072-5b76ec216c32aa39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Java NIO: 一个线程使用一个Selector处理3个Channel"></p>
+<h2 id="Selector的创建"><a href="#Selector的创建" class="headerlink" title="Selector的创建"></a>Selector的创建</h2><p>通过调用<code>Selector.open()</code>方法创建一个<code>Selector</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Selector selector = Selector.open();</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="向Selector注册通道"><a href="#向Selector注册通道" class="headerlink" title="向Selector注册通道"></a>向Selector注册通道</h2><p>为了将<code>Channel</code>和<code>Selector</code>配合使用，必须将<code>Channel</code>注册到<code>Selector</code>上。通过<code>SelectableChannel.register()</code>方法来实现，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">channel.configureBlocking(false);</span><br><span class="line">SelectionKey key = channel.register(selector,</span><br><span class="line">	Selectionkey.OP_READ);</span><br></pre></td></tr></table></figure>
+
+<p>与<code>Selector</code>一起使用时，<code>Channel</code>必须处于非阻塞模式下。这意味着不能将<code>FileChannel</code>与<code>Selector</code>一起使用，因为<code>FileChannel</code>不能切换到非阻塞模式。而套接字通道都可以。</p>
+<p>注意<code>register()</code>方法的第二个参数。这是一个“<em>兴趣(interest)集合</em>”，意思是在通过<code>Selector</code>监听<code>Channel</code>时对什么事件感兴趣。可以监听四种不同类型的事件：</p>
+<ol>
+<li>Connect</li>
+<li>Accept</li>
+<li>Read</li>
+<li>Write</li>
+</ol>
+<p><code>Channel</code>能够触发了一个事件，意思是该事件已经就绪。所以，某个<code>channel</code>成功连接到另一个服务器称为“<strong>连接就绪</strong>”。一个<code>server socket channel</code>准备好接收新进入的连接称为“<strong>接收就绪</strong>”。一个有数据可读的通道可以说是“<strong>读就绪</strong>”。等待写数据的通道可以说是“<strong>写就绪</strong>”。</p>
+<p>这四种事件用SelectionKey的四个常量来表示：</p>
+<ol>
+<li>SelectionKey.OP_CONNECT</li>
+<li>SelectionKey.OP_ACCEPT</li>
+<li>SelectionKey.OP_READ</li>
+<li>SelectionKey.OP_WRITE</li>
+</ol>
+<p>如果你对不止一种事件感兴趣，那么可以用“位或”操作符将常量连接起来，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;</span><br></pre></td></tr></table></figure>
+
+<p>在下面还会继续提到interest集合。</p>
+<h2 id="SelectionKey说明"><a href="#SelectionKey说明" class="headerlink" title="SelectionKey说明"></a>SelectionKey说明</h2><p>在上一小节中，当向<code>Selector</code>注册<code>Channel</code>时，<code>register()</code>方法会返回一个<code>SelectionKey</code>对象。这个对象包含了一些你感兴趣的属性：</p>
+<ul>
+<li>interest集合</li>
+<li>ready集合</li>
+<li>Channel</li>
+<li>Selector</li>
+<li>附加的对象（可选）</li>
+</ul>
+<p>下面我会描述这些属性。</p>
+<h3 id="interest集合"><a href="#interest集合" class="headerlink" title="interest集合"></a>interest集合</h3><p>就像向<code>Selector</code>注册通道一节中所描述的，interest集合是你所选择的感兴趣的事件集合。可以通过<code>SelectionKey</code>读写interest集合，像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int interestSet = selectionKey.interestOps();</span><br><span class="line"></span><br><span class="line">boolean isInterestedInAccept  = (interestSet &amp; SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT；</span><br><span class="line">boolean isInterestedInConnect = interestSet &amp; SelectionKey.OP_CONNECT;</span><br><span class="line">boolean isInterestedInRead    = interestSet &amp; SelectionKey.OP_READ;</span><br><span class="line">boolean isInterestedInWrite   = interestSet &amp; SelectionKey.OP_WRITE;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，用“和”操作interest 集合和给定的SelectionKey常量，可以确定某个确定的事件是否在interest 集合中。</p>
+<h3 id="ready集合"><a href="#ready集合" class="headerlink" title="ready集合"></a>ready集合</h3><p>ready 集合是通道已经准备就绪的操作的集合。在一次选择(<code>Selection</code>)之后，你会首先访问这个ready set。<code>Selection</code>将在下一小节进行解释。可以这样访问ready集合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int readySet = selectionKey.readyOps();</span><br></pre></td></tr></table></figure>
+
+<p>可以用像检测interest集合那样的方法，来检测<code>channel</code>中什么事件或操作已经就绪。但是，也可以使用以下四个方法，它们都会返回一个布尔类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">selectionKey.isAcceptable();</span><br><span class="line">selectionKey.isConnectable();</span><br><span class="line">selectionKey.isReadable();</span><br><span class="line">selectionKey.isWritable();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Channel-Selector"><a href="#Channel-Selector" class="headerlink" title="Channel + Selector"></a>Channel + Selector</h3><p>从<code>SelectionKey</code>访问<code>Channel</code>和<code>Selector</code>很简单。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Channel  channel  = selectionKey.channel();</span><br><span class="line"></span><br><span class="line">Selector selector = selectionKey.selector();</span><br></pre></td></tr></table></figure>
+
+<h3 id="附加的对象"><a href="#附加的对象" class="headerlink" title="附加的对象"></a>附加的对象</h3><p>可以将一个对象或者更多信息附着到<code>SelectionKey</code>上，这样就能方便的识别某个给定的通道。例如，可以附加 与通道一起使用的<code>Buffer</code>，或是包含聚集数据的某个对象。使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selectionKey.attach(theObject);</span><br><span class="line"></span><br><span class="line">Object attachedObj = selectionKey.attachment();</span><br></pre></td></tr></table></figure>
+
+<p>还可以在用<code>register()</code>方法向<code>Selector</code>注册<code>Channel</code>的时候附加对象。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SelectionKey key = channel.register(selector, SelectionKey.OP_READ, theObject);</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过Selector选择通道"><a href="#通过Selector选择通道" class="headerlink" title="通过Selector选择通道"></a>通过Selector选择通道</h2><p>一旦向<code>Selector</code>注册了一或多个通道，就可以调用几个重载的<code>select()</code>方法。这些方法返回你所感兴趣的事件（如连接、接受、读或写）已经准备就绪的那些通道。换句话说，如果你对“读就绪”的通道感兴趣，<code>select()</code>方法会返回读事件已经就绪的那些通道。</p>
+<p>下面是<code>select()</code>方法：</p>
+<ul>
+<li>int select()</li>
+<li>int select(long timeout)</li>
+<li>int selectNow()</li>
+</ul>
+<p><code>select()</code>阻塞到至少有一个通道在你注册的事件上就绪了。</p>
+<p><code>select(long timeout)</code>和<code>select()</code>一样，除了最长会阻塞<code>timeout</code>毫秒(参数)。</p>
+<p><code>selectNow()</code>不会阻塞，不管什么通道就绪都立刻返回（译者注：此方法执行非阻塞的选择操作。如果自从前一次选择操作后，没有通道变成可选择的，则此方法直接返回<strong>零</strong>。）。</p>
+<p><code>select()</code>方法返回的<code>int</code>值表示有多少通道已经就绪。亦即，自上次调用<code>select()</code>方法后有多少通道变成就绪状态。如果调用<code>select()</code>方法，因为有一个通道变成就绪状态，返回了1，若再次调用<code>select()</code>方法，如果另一个通道就绪了，它会再次返回1。如果对第一个就绪的<code>channel</code>没有做任何操作，现在就有两个就绪的通道，但在每次<code>select()</code>方法调用之间，只有一个通道就绪了。</p>
+<h3 id="selectedKeys"><a href="#selectedKeys" class="headerlink" title="selectedKeys()"></a>selectedKeys()</h3><p>一旦调用了<code>select()</code>方法，并且返回值表明有一个或更多个通道就绪了，然后可以通过调用<code>selector</code>的<code>selectedKeys()</code>方法，访问“已选择键集（<code>selected key set</code>）”中的就绪通道。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set selectedKeys = selector.selectedKeys();</span><br></pre></td></tr></table></figure>
+
+<p>当像<code>Selector</code>注册<code>Channel</code>时，<code>Channel.register()</code>方法会返回一个<code>SelectionKey</code>对象。这个对象代表了注册到该<code>Selector</code>的通道。可以通过<code>SelectionKey</code>的<code>selectedKeySet()</code>方法访问这些对象。</p>
+<p>可以遍历这个已选择的键集合来访问就绪的通道。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();</span><br><span class="line"></span><br><span class="line">Iterator&lt;SelectionKey&gt; keyIterator = selectedKeys.iterator();</span><br><span class="line"></span><br><span class="line">while(keyIterator.hasNext()) &#123;</span><br><span class="line">    </span><br><span class="line">    SelectionKey key = keyIterator.next();</span><br><span class="line"></span><br><span class="line">    if(key.isAcceptable()) &#123;</span><br><span class="line">        // 一个连接被ServerSocketChannel接受</span><br><span class="line">    &#125; else if (key.isConnectable()) &#123;</span><br><span class="line">        // 与远程服务器建立了连接</span><br><span class="line">    &#125; else if (key.isReadable()) &#123;</span><br><span class="line">        // 一个channel做好了读准备</span><br><span class="line">    &#125; else if (key.isWritable()) &#123;</span><br><span class="line">        // 一个channel做好了写准备</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    keyIterator.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个循环遍历已选择键集中的每个键，并检测各个键所对应的通道的就绪事件。</p>
+<p>注意每次迭代末尾的<code>keyIterator.remove()</code>调用。<code>Selector</code>不会自己从已选择键集中移除<code>SelectionKey</code>实例。必须在处理完通道时自己移除。下次该通道变成就绪时，<code>Selector</code>会再次将其放入已选择键集中。</p>
+<p><code>SelectionKey.channel()</code>方法返回的通道需要转型成你要处理的类型，如<code>ServerSocketChannel</code>或<code>SocketChannel</code>等。</p>
+<h3 id="wakeUp"><a href="#wakeUp" class="headerlink" title="wakeUp()"></a>wakeUp()</h3><p>某个线程调用<code>select()</code>方法后阻塞了，即使没有通道已经就绪，也有办法让其从<code>select()</code>方法返回。只要让其它线程在第一个线程调用<code>select()</code>方法的那个对象上调用<code>Selector.wakeup()</code>方法即可。阻塞在<code>select()</code>方法上的线程会立马返回。</p>
+<p>如果有其它线程调用了<code>wakeup()</code>方法，但当前没有线程阻塞在`select()方法上，下个调用select()方法的线程会立即“醒来（wake up）”。</p>
+<h3 id="close"><a href="#close" class="headerlink" title="close()"></a>close()</h3><p>用完<code>Selector</code>后调用其<code>close()</code>方法会关闭该<code>Selector</code>，且使注册到该<code>Selector</code>上的所有<code>SelectionKey</code>实例无效。通道本身并不会关闭。</p>
+<h2 id="完整的示例"><a href="#完整的示例" class="headerlink" title="完整的示例"></a>完整的示例</h2><p>这里有一个完整的示例，打开一个<code>Selector</code>，注册一个通道注册到这个<code>Selector</code>上(通道的初始化过程略去),然后持续监控这个<code>Selector</code>的四种事件（接受，连接，读，写）是否就绪。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">Selector selector = Selector.open();</span><br><span class="line">channel.configureBlocking(false);</span><br><span class="line">SelectionKey key = channel.register(selector, SelectionKey.OP_READ);</span><br><span class="line"></span><br><span class="line">while(true) &#123;</span><br><span class="line">  int readyChannels = selector.select();</span><br><span class="line">  if(readyChannels == 0) continue;</span><br><span class="line"></span><br><span class="line">  Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();</span><br><span class="line">  Iterator&lt;SelectionKey&gt; keyIterator = selectedKeys.iterator();</span><br><span class="line"></span><br><span class="line">  while(keyIterator.hasNext()) &#123;</span><br><span class="line">    SelectionKey key = keyIterator.next();</span><br><span class="line">    if(key.isAcceptable()) &#123;</span><br><span class="line">        // 一个连接被ServerSocketChannel接受</span><br><span class="line">    &#125; else if (key.isConnectable()) &#123;</span><br><span class="line">        // 与远程服务器建立了连接</span><br><span class="line">    &#125; else if (key.isReadable()) &#123;</span><br><span class="line">        // 一个channel做好了读准备</span><br><span class="line">    &#125; else if (key.isWritable()) &#123;</span><br><span class="line">        // 一个channel做好了写准备</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    keyIterator.remove();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">```参考：http://ifeve.com/selectors/</span><br><span class="line">[原文地址](http://tutorials.jenkov.com/java-nio/selectors.html)</span><br><span class="line"></span><br><span class="line"># 目录</span><br><span class="line"></span><br><span class="line">- [Java NIO教程](http://www.jianshu.com/p/465ecd909f8c)</span><br><span class="line">- [Java NIO 教程(一) 概述](http://www.jianshu.com/p/f22fa0199f91)</span><br><span class="line">- [Java NIO 教程(二) Channel](http://www.jianshu.com/p/1ecacad9beb5)</span><br><span class="line">- [Java NIO 教程(三) Buffer](http://www.jianshu.com/p/6066eab2ecfc)</span><br><span class="line">- [Java NIO 教程(四) Scatter/Gather](http://www.jianshu.com/p/d5573d01a690)</span><br><span class="line">- [Java NIO 教程(五) 通道之间的数据传输](http://www.jianshu.com/p/fdf72be99d76)</span><br><span class="line">- [Java NIO 教程(六) Selector](http://www.jianshu.com/p/f9f5df460883)</span><br><span class="line">- [Java NIO 教程(七) FileChannel](http://www.jianshu.com/p/ab7044548e08)</span><br><span class="line">- [Java NIO 教程(八) SocketChannel](http://www.jianshu.com/p/eeed1c7aec2d)</span><br><span class="line">- [Java NIO 教程(九) ServerSocketChannel](http://www.jianshu.com/p/2b658824ed76)</span><br><span class="line">- [Java NIO 教程(十) 非阻塞式服务器](http://www.jianshu.com/p/7ded19c8c1e8)</span><br><span class="line">- [Java NIO 教程(十一) Java NIO DatagramChannel](http://www.jianshu.com/p/1b1e1849344c)</span><br><span class="line">- [Java NIO 教程(十二) Pipe](http://www.jianshu.com/p/d232a66cbf9a)</span><br><span class="line">- [Java NIO 教程(十三) Java NIO vs. IO](http://www.jianshu.com/p/7d193c0ad484)</span><br><span class="line">- [Java NIO 教程(十四) Java NIO Path](http://www.jianshu.com/p/17b8e042a90b)</span><br><span class="line">- [Java NIO 教程(十五) Java NIO Files](http://www.jianshu.com/p/3cb5ca04e3c8)</span><br><span class="line">- [Java NIO 教程(十六) Java NIO AsynchronousFileChannel](http://www.jianshu.com/p/b38f8c596193)</span><br><span class="line"></span><br><span class="line">`Selector`（选择器）是Java NIO中能够检测一到多个NIO通道，并能够知晓通道是否为诸如读写事件做好准备的组件。这样，一个单独的线程可以管理多个`channel`，从而管理多个网络连接。</span><br><span class="line"></span><br><span class="line">## 为什么使用Selector?</span><br><span class="line"></span><br><span class="line">仅用单个线程来处理多个`Channel`的好处是：**只需要更少的线程来处理通道**。事实上，可以只用一个线程处理所有的通道。对于操作系统来说，线程之间上下文切换的开销很大，而且每个线程都要占用系统的一些资源（如内存）。因此，使用的线程越少越好。</span><br><span class="line"></span><br><span class="line">但是，需要记住，现代的操作系统和CPU在多任务方面表现的越来越好，所以多线程的开销随着时间的推移，变得越来越小了。实际上，如果一个CPU有多个内核，不使用多任务可能是在浪费CPU能力。不管怎么说，关于那种设计的讨论应该放在另一篇不同的文章中。在这里，只要知道使用Selector能够处理多个通道就足够了。</span><br><span class="line"></span><br><span class="line">下面是单线程使用一个Selector处理3个channel的示例图：</span><br><span class="line"></span><br><span class="line">![Java NIO: 一个线程使用一个Selector处理3个Channel](http://upload-images.jianshu.io/upload_images/5408072-5b76ec216c32aa39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line"></span><br><span class="line">## Selector的创建</span><br><span class="line"></span><br><span class="line">通过调用`Selector.open()`方法创建一个`Selector`，如下：</span><br></pre></td></tr></table></figure>
+
+<p>Selector selector = Selector.open();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 向Selector注册通道</span><br><span class="line"></span><br><span class="line">为了将`Channel`和`Selector`配合使用，必须将`Channel`注册到`Selector`上。通过`SelectableChannel.register()`方法来实现，如下：</span><br></pre></td></tr></table></figure>
+
+<p>channel.configureBlocking(false);<br>SelectionKey key = channel.register(selector,<br>    Selectionkey.OP_READ);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">与`Selector`一起使用时，`Channel`必须处于非阻塞模式下。这意味着不能将`FileChannel`与`Selector`一起使用，因为`FileChannel`不能切换到非阻塞模式。而套接字通道都可以。</span><br><span class="line"></span><br><span class="line">注意`register()`方法的第二个参数。这是一个“*兴趣(interest)集合*”，意思是在通过`Selector`监听`Channel`时对什么事件感兴趣。可以监听四种不同类型的事件：</span><br><span class="line"></span><br><span class="line">1. Connect</span><br><span class="line">1. Accept</span><br><span class="line">1. Read</span><br><span class="line">1. Write</span><br><span class="line"></span><br><span class="line">`Channel`能够触发了一个事件，意思是该事件已经就绪。所以，某个`channel`成功连接到另一个服务器称为“**连接就绪**”。一个`server socket channel`准备好接收新进入的连接称为“**接收就绪**”。一个有数据可读的通道可以说是“**读就绪**”。等待写数据的通道可以说是“**写就绪**”。</span><br><span class="line"></span><br><span class="line">这四种事件用SelectionKey的四个常量来表示：</span><br><span class="line"></span><br><span class="line">1. SelectionKey.OP_CONNECT</span><br><span class="line">1. SelectionKey.OP_ACCEPT</span><br><span class="line">1. SelectionKey.OP_READ</span><br><span class="line">1. SelectionKey.OP_WRITE</span><br><span class="line"></span><br><span class="line">如果你对不止一种事件感兴趣，那么可以用“位或”操作符将常量连接起来，如下：</span><br></pre></td></tr></table></figure>
+
+<p>int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在下面还会继续提到interest集合。</span><br><span class="line"></span><br><span class="line">## SelectionKey说明</span><br><span class="line"></span><br><span class="line">在上一小节中，当向`Selector`注册`Channel`时，`register()`方法会返回一个`SelectionKey`对象。这个对象包含了一些你感兴趣的属性：</span><br><span class="line"></span><br><span class="line">- interest集合</span><br><span class="line">- ready集合</span><br><span class="line">- Channel</span><br><span class="line">- Selector</span><br><span class="line">- 附加的对象（可选）</span><br><span class="line"></span><br><span class="line">下面我会描述这些属性。</span><br><span class="line"></span><br><span class="line">### interest集合</span><br><span class="line"></span><br><span class="line">就像向`Selector`注册通道一节中所描述的，interest集合是你所选择的感兴趣的事件集合。可以通过`SelectionKey`读写interest集合，像这样：</span><br></pre></td></tr></table></figure>
+
+<p>int interestSet = selectionKey.interestOps();</p>
+<p>boolean isInterestedInAccept  = (interestSet &amp; SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT；<br>boolean isInterestedInConnect = interestSet &amp; SelectionKey.OP_CONNECT;<br>boolean isInterestedInRead    = interestSet &amp; SelectionKey.OP_READ;<br>boolean isInterestedInWrite   = interestSet &amp; SelectionKey.OP_WRITE;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以看到，用“和”操作interest 集合和给定的SelectionKey常量，可以确定某个确定的事件是否在interest 集合中。</span><br><span class="line"></span><br><span class="line">### ready集合</span><br><span class="line"></span><br><span class="line">ready 集合是通道已经准备就绪的操作的集合。在一次选择(`Selection`)之后，你会首先访问这个ready set。`Selection`将在下一小节进行解释。可以这样访问ready集合：</span><br></pre></td></tr></table></figure>
+
+<p>int readySet = selectionKey.readyOps();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以用像检测interest集合那样的方法，来检测`channel`中什么事件或操作已经就绪。但是，也可以使用以下四个方法，它们都会返回一个布尔类型：</span><br></pre></td></tr></table></figure>
+
+<p>selectionKey.isAcceptable();<br>selectionKey.isConnectable();<br>selectionKey.isReadable();<br>selectionKey.isWritable();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Channel + Selector</span><br><span class="line"></span><br><span class="line">从`SelectionKey`访问`Channel`和`Selector`很简单。如下：</span><br></pre></td></tr></table></figure>
+
+<p>Channel  channel  = selectionKey.channel();</p>
+<p>Selector selector = selectionKey.selector();    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 附加的对象</span><br><span class="line"></span><br><span class="line">可以将一个对象或者更多信息附着到`SelectionKey`上，这样就能方便的识别某个给定的通道。例如，可以附加 与通道一起使用的`Buffer`，或是包含聚集数据的某个对象。使用方法如下：</span><br></pre></td></tr></table></figure>
+
+<p>selectionKey.attach(theObject);</p>
+<p>Object attachedObj = selectionKey.attachment();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">还可以在用`register()`方法向`Selector`注册`Channel`的时候附加对象。如：</span><br></pre></td></tr></table></figure>
+
+<p>SelectionKey key = channel.register(selector, SelectionKey.OP_READ, theObject);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 通过Selector选择通道</span><br><span class="line"></span><br><span class="line">一旦向`Selector`注册了一或多个通道，就可以调用几个重载的`select()`方法。这些方法返回你所感兴趣的事件（如连接、接受、读或写）已经准备就绪的那些通道。换句话说，如果你对“读就绪”的通道感兴趣，`select()`方法会返回读事件已经就绪的那些通道。</span><br><span class="line"></span><br><span class="line">下面是`select()`方法：</span><br><span class="line"></span><br><span class="line">- int select()</span><br><span class="line">- int select(long timeout)</span><br><span class="line">- int selectNow()</span><br><span class="line"></span><br><span class="line">`select()`阻塞到至少有一个通道在你注册的事件上就绪了。</span><br><span class="line"></span><br><span class="line">`select(long timeout)`和`select()`一样，除了最长会阻塞`timeout`毫秒(参数)。</span><br><span class="line"></span><br><span class="line">`selectNow()`不会阻塞，不管什么通道就绪都立刻返回（译者注：此方法执行非阻塞的选择操作。如果自从前一次选择操作后，没有通道变成可选择的，则此方法直接返回**零**。）。</span><br><span class="line"></span><br><span class="line">`select()`方法返回的`int`值表示有多少通道已经就绪。亦即，自上次调用`select()`方法后有多少通道变成就绪状态。如果调用`select()`方法，因为有一个通道变成就绪状态，返回了1，若再次调用`select()`方法，如果另一个通道就绪了，它会再次返回1。如果对第一个就绪的`channel`没有做任何操作，现在就有两个就绪的通道，但在每次`select()`方法调用之间，只有一个通道就绪了。</span><br><span class="line"></span><br><span class="line">### selectedKeys()</span><br><span class="line"></span><br><span class="line">一旦调用了`select()`方法，并且返回值表明有一个或更多个通道就绪了，然后可以通过调用`selector`的`selectedKeys()`方法，访问“已选择键集（`selected key set`）”中的就绪通道。如下所示：</span><br></pre></td></tr></table></figure>
+
+<p>Set selectedKeys = selector.selectedKeys();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">当像`Selector`注册`Channel`时，`Channel.register()`方法会返回一个`SelectionKey`对象。这个对象代表了注册到该`Selector`的通道。可以通过`SelectionKey`的`selectedKeySet()`方法访问这些对象。</span><br><span class="line"></span><br><span class="line">可以遍历这个已选择的键集合来访问就绪的通道。如下：</span><br></pre></td></tr></table></figure>
+
+<p>Set<selectionkey> selectedKeys = selector.selectedKeys();</selectionkey></p>
+<p>Iterator<selectionkey> keyIterator = selectedKeys.iterator();</selectionkey></p>
+<p>while(keyIterator.hasNext()) {</p>
+<pre><code>SelectionKey key = keyIterator.next();
+
+if(key.isAcceptable()) {
+    // 一个连接被ServerSocketChannel接受
+} else if (key.isConnectable()) {
+    // 与远程服务器建立了连接
+} else if (key.isReadable()) {
+    // 一个channel做好了读准备
+} else if (key.isWritable()) {
+    // 一个channel做好了写准备
+}
+
+keyIterator.remove();</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这个循环遍历已选择键集中的每个键，并检测各个键所对应的通道的就绪事件。</span><br><span class="line"></span><br><span class="line">注意每次迭代末尾的`keyIterator.remove()`调用。`Selector`不会自己从已选择键集中移除`SelectionKey`实例。必须在处理完通道时自己移除。下次该通道变成就绪时，`Selector`会再次将其放入已选择键集中。</span><br><span class="line"></span><br><span class="line">`SelectionKey.channel()`方法返回的通道需要转型成你要处理的类型，如`ServerSocketChannel`或`SocketChannel`等。</span><br><span class="line"></span><br><span class="line">### wakeUp()</span><br><span class="line"></span><br><span class="line">某个线程调用`select()`方法后阻塞了，即使没有通道已经就绪，也有办法让其从`select()`方法返回。只要让其它线程在第一个线程调用`select()`方法的那个对象上调用`Selector.wakeup()`方法即可。阻塞在`select()`方法上的线程会立马返回。</span><br><span class="line"></span><br><span class="line">如果有其它线程调用了`wakeup()`方法，但当前没有线程阻塞在`select()方法上，下个调用select()方法的线程会立即“醒来（wake up）”。</span><br><span class="line"></span><br><span class="line">### close()</span><br><span class="line"></span><br><span class="line">用完`Selector`后调用其`close()`方法会关闭该`Selector`，且使注册到该`Selector`上的所有`SelectionKey`实例无效。通道本身并不会关闭。</span><br><span class="line"></span><br><span class="line">## 完整的示例</span><br><span class="line"></span><br><span class="line">这里有一个完整的示例，打开一个`Selector`，注册一个通道注册到这个`Selector`上(通道的初始化过程略去),然后持续监控这个`Selector`的四种事件（接受，连接，读，写）是否就绪。</span><br></pre></td></tr></table></figure>
+
+<p>Selector selector = Selector.open();<br>channel.configureBlocking(false);<br>SelectionKey key = channel.register(selector, SelectionKey.OP_READ);</p>
+<p>while(true) {<br>  int readyChannels = selector.select();<br>  if(readyChannels == 0) continue;</p>
+<p>  Set<selectionkey> selectedKeys = selector.selectedKeys();<br>  Iterator<selectionkey> keyIterator = selectedKeys.iterator();</selectionkey></selectionkey></p>
+<p>  while(keyIterator.hasNext()) {<br>    SelectionKey key = keyIterator.next();<br>    if(key.isAcceptable()) {<br>        // 一个连接被ServerSocketChannel接受<br>    } else if (key.isConnectable()) {<br>        // 与远程服务器建立了连接<br>    } else if (key.isReadable()) {<br>        // 一个channel做好了读准备<br>    } else if (key.isWritable()) {<br>        // 一个channel做好了写准备<br>    }</p>
+<pre><code>keyIterator.remove();</code></pre><p>  }<br>}</p>
+<pre><code></code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,322 +391,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/15/Java-NIO-教程-6-Selector/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-5-通道之间的数据传输/" class="archive-article-date">
-  	<time datetime="2019-09-15T23:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/15/Java-NIO-教程-5-通道之间的数据传输/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java NIO 教程 5 通道之间的数据传输</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-5-通道之间的数据传输/">Java NIO 教程 5 通道之间的数据传输</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-4-Scatter-Gather/" class="archive-article-date">
-  	<time datetime="2019-09-15T00:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-4-Scatter-Gather/">Java NIO 教程 4 Scatter Gather</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-3-Buffer/" class="archive-article-date">
-  	<time datetime="2019-09-15T00:43:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-3-Buffer/">Java NIO 教程 3 Buffer</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-2-Channel/" class="archive-article-date">
-  	<time datetime="2019-09-14T16:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-2-Channel/">Java NIO 教程 2 Channel</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-1-概述/" class="archive-article-date">
-  	<time datetime="2019-09-14T16:03:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-1-概述/">Java NIO 教程 1 概述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-0/" class="archive-article-date">
-  	<time datetime="2019-09-14T15:11:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-0/">Java NIO 教程 0</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/13/hello-world/" class="archive-article-date">
-  	<time datetime="2019-09-13T15:18:35.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -541,8 +513,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
