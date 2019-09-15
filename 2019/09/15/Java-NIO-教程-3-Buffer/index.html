@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 技术路线整理和个人分享</title>
+  <title>Java NIO 教程 3 Buffer | 技术路线整理和个人分享</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="技术路线整理和个人分享">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="参考：http://ifeve.com/buffers/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教程">
+<meta name="keywords" content="java,nio,教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java NIO 教程 3 Buffer">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/Java-NIO-教程-3-Buffer/index.html">
 <meta property="og:site_name" content="技术路线整理和个人分享">
+<meta property="og:description" content="参考：http://ifeve.com/buffers/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教程">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5408072-f0ca199c9d650847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-15T00:45:34.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术路线整理和个人分享">
+<meta name="twitter:title" content="Java NIO 教程 3 Buffer">
+<meta name="twitter:description" content="参考：http://ifeve.com/buffers/原文地址 目录 Java NIO教程 Java NIO 教程(一) 概述 Java NIO 教程(二) Channel Java NIO 教程(三) Buffer Java NIO 教程(四) Scatter/Gather Java NIO 教程(五) 通道之间的数据传输 Java NIO 教程(六) Selector Java NIO 教程">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5408072-f0ca199c9d650847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="技术路线整理和个人分享" type="application/atom+xml">
   
@@ -154,82 +161,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-NIO-教程-3-Buffer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-4-Scatter-Gather/" class="archive-article-date">
-  	<time datetime="2019-09-15T00:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-4-Scatter-Gather/">Java NIO 教程 4 Scatter Gather</a>
+    <h1 class="article-title" itemprop="name">
+      Java NIO 教程 3 Buffer
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/15/Java-NIO-教程-3-Buffer/" class="archive-article-date">
+        
+        <a href="/2019/09/15/Java-NIO-教程-3-Buffer/" class="archive-article-date">
   	<time datetime="2019-09-15T00:43:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/15/Java-NIO-教程-3-Buffer/">Java NIO 教程 3 Buffer</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a href="http://ifeve.com/buffers/" target="_blank" rel="noopener">http://ifeve.com/buffers/</a><br><a href="http://tutorials.jenkov.com/java-nio/buffers.html" target="_blank" rel="noopener">原文地址</a></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li><a href="http://www.jianshu.com/p/465ecd909f8c" target="_blank" rel="noopener">Java NIO教程</a></li>
+<li><a href="http://www.jianshu.com/p/f22fa0199f91" target="_blank" rel="noopener">Java NIO 教程(一) 概述</a></li>
+<li><a href="http://www.jianshu.com/p/1ecacad9beb5" target="_blank" rel="noopener">Java NIO 教程(二) Channel</a></li>
+<li><a href="http://www.jianshu.com/p/6066eab2ecfc" target="_blank" rel="noopener">Java NIO 教程(三) Buffer</a></li>
+<li><a href="http://www.jianshu.com/p/d5573d01a690" target="_blank" rel="noopener">Java NIO 教程(四) Scatter/Gather</a></li>
+<li><a href="http://www.jianshu.com/p/fdf72be99d76" target="_blank" rel="noopener">Java NIO 教程(五) 通道之间的数据传输</a></li>
+<li><a href="http://www.jianshu.com/p/f9f5df460883" target="_blank" rel="noopener">Java NIO 教程(六) Selector</a></li>
+<li><a href="http://www.jianshu.com/p/ab7044548e08" target="_blank" rel="noopener">Java NIO 教程(七) FileChannel</a></li>
+<li><a href="http://www.jianshu.com/p/eeed1c7aec2d" target="_blank" rel="noopener">Java NIO 教程(八) SocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/2b658824ed76" target="_blank" rel="noopener">Java NIO 教程(九) ServerSocketChannel</a></li>
+<li><a href="http://www.jianshu.com/p/7ded19c8c1e8" target="_blank" rel="noopener">Java NIO 教程(十) 非阻塞式服务器</a></li>
+<li><a href="http://www.jianshu.com/p/1b1e1849344c" target="_blank" rel="noopener">Java NIO 教程(十一) Java NIO DatagramChannel</a></li>
+<li><a href="http://www.jianshu.com/p/d232a66cbf9a" target="_blank" rel="noopener">Java NIO 教程(十二) Pipe</a></li>
+<li><a href="http://www.jianshu.com/p/7d193c0ad484" target="_blank" rel="noopener">Java NIO 教程(十三) Java NIO vs. IO</a></li>
+<li><a href="http://www.jianshu.com/p/17b8e042a90b" target="_blank" rel="noopener">Java NIO 教程(十四) Java NIO Path</a></li>
+<li><a href="http://www.jianshu.com/p/3cb5ca04e3c8" target="_blank" rel="noopener">Java NIO 教程(十五) Java NIO Files</a></li>
+<li><a href="http://www.jianshu.com/p/b38f8c596193" target="_blank" rel="noopener">Java NIO 教程(十六) Java NIO AsynchronousFileChannel</a></li>
+</ul>
+<p>Java NIO中的Buffer用于和NIO通道进行交互。如你所知，数据是从通道读入缓冲区，从缓冲区写入到通道中的。</p>
+<p>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</p>
+<h2 id="Buffer的基本用法"><a href="#Buffer的基本用法" class="headerlink" title="Buffer的基本用法"></a>Buffer的基本用法</h2><p>使用Buffer读写数据一般遵循以下四个步骤：</p>
+<ol>
+<li>写入数据到<code>Buffer</code></li>
+<li>调用<code>flip()</code>方法</li>
+<li>从<code>Buffer</code>中读取数据</li>
+<li>调用<code>clear()</code>方法或者<code>compact()</code>方法</li>
+</ol>
+<p>当向<code>buffer</code>写入数据时，<code>buffer</code>会记录下写了多少数据。一旦要读取数据，需要通过<code>flip()</code>方法将<code>Buffer</code>从写模式切换到读模式。在读模式下，可以读取之前写入到<code>buffer</code>的所有数据。</p>
+<p>一旦读完了所有的数据，就需要清空缓冲区，让它可以再次被写入。有两种方式能清空缓冲区：调用<code>clear()</code>或<code>compact()</code>方法。<code>clear()</code>方法会清空整个缓冲区。<code>compact()</code>方法只会清除已经读过的数据。任何未读的数据都被移到缓冲区的起始处，新写入的数据将放到缓冲区未读数据的后面。</p>
+<p>下面是一个使用Buffer的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile aFile = new RandomAccessFile(&quot;data/nio-data.txt&quot;, &quot;rw&quot;);</span><br><span class="line">FileChannel inChannel = aFile.getChannel();</span><br><span class="line"></span><br><span class="line">//创建容量为48byte的buffer</span><br><span class="line">ByteBuffer buf = ByteBuffer.allocate(48);</span><br><span class="line"></span><br><span class="line">int bytesRead = inChannel.read(buf); //读取数据，放入buffer</span><br><span class="line">while (bytesRead != -1) &#123;</span><br><span class="line"></span><br><span class="line">  buf.flip();  //设置buffer切换模式为读模式</span><br><span class="line"></span><br><span class="line">  while(buf.hasRemaining())&#123;</span><br><span class="line">      System.out.print((char) buf.get()); // 每次读取1byte，也就是一个字节</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  buf.clear(); //清空buffer，准备再次写入</span><br><span class="line">  bytesRead = inChannel.read(buf);</span><br><span class="line">&#125;</span><br><span class="line">aFile.close();</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="Buffer的capacity-position和limit"><a href="#Buffer的capacity-position和limit" class="headerlink" title="Buffer的capacity,position和limit"></a>Buffer的capacity,position和limit</h2><p>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</p>
+<p>为了理解Buffer的工作原理，需要熟悉它的三个属性：</p>
+<ul>
+<li>capacity 容量</li>
+<li>position 位置</li>
+<li>limit 限制</li>
+</ul>
+<p><code>position</code>和<code>limit</code>的含义取决于Buffer处在读模式还是写模式。不管Buffer处在什么模式，<code>capacity</code>的含义总是一样的。</p>
+<p>这里有一个关于<code>capacity</code>，<code>position</code>和<code>limit</code>在读写模式中的说明，详细的解释在插图后面。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5408072-f0ca199c9d650847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
+<h3 id="capacity"><a href="#capacity" class="headerlink" title="capacity"></a>capacity</h3><p>作为一个内存块，Buffer有一个固定的大小值，也叫“<code>capacity</code>”.你只能往里写<code>capacity</code>个<code>byte</code>、<code>long</code>，<code>char</code>等类型数据。一旦<code>Buffer</code>满了，需要将其清空（通过读数据或者清除数据）才能继续往里写数据。</p>
+<h3 id="position"><a href="#position" class="headerlink" title="position"></a>position</h3><p>当你写数据到<code>Buffer</code>中时，<code>position</code>表示当前的位置。初始的<code>position</code>值为0。当一个<code>byte</code>、<code>long</code>等数据写到<code>Buffer</code>后， <code>position</code>会向前移动到下一个可插入数据的<code>Buffer</code>单元。<code>position</code>最大可为<code>capacity – 1</code>.</p>
+<p>当读取数据时，也是从某个特定位置读。当将<code>Buffer</code>从写模式切换到读模式，<code>position</code>会被重置为0. 当从<code>Buffer</code>的<code>position</code>处读取数据时，<code>position</code>向前移动到下一个可读的位置。</p>
+<h3 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h3><p>在写模式下，<code>Buffer</code>的<code>limit</code>表示你最多能往<code>Buffer</code>里写多少数据。 写模式下，<code>limit</code>等于<code>Buffer</code>的<code>capacity</code>。</p>
+<p>当切换<code>Buffer</code>到读模式时， <code>limit</code>表示你最多能读到多少数据。因此，当切换<code>Buffer</code>到读模式时，<code>limit</code>会被设置成写模式下的<code>position</code>值。换句话说，你能读到之前写入的所有数据（<code>limit</code>被设置成已写数据的数量，这个值在写模式下就是<code>position</code>）</p>
+<h2 id="Buffer的类型"><a href="#Buffer的类型" class="headerlink" title="Buffer的类型"></a>Buffer的类型</h2><p>Java NIO 有以下Buffer类型</p>
+<ul>
+<li><code>ByteBuffer</code></li>
+<li><code>MappedByteBuffer</code></li>
+<li><code>CharBuffer</code></li>
+<li><code>DoubleBuffer</code></li>
+<li><code>FloatBuffer</code></li>
+<li><code>IntBuffer</code></li>
+<li><code>LongBuffer</code></li>
+<li><code>ShortBuffer</code></li>
+</ul>
+<p>如你所见，这些<code>Buffer</code>类型代表了不同的数据类型。换句话说，就是可以通过<code>char</code>，<code>short</code>，<code>int</code>，<code>long</code>，<code>float</code>或<code>double</code>类型来操作缓冲区中的字节。</p>
+<p><code>MappedByteBuffer</code>有些特别，在涉及它的专门章节中再讲。</p>
+<h2 id="Buffer的分配"><a href="#Buffer的分配" class="headerlink" title="Buffer的分配"></a>Buffer的分配</h2><p>要想获得一个<code>Buffer</code>对象首先要进行分配。 每一个<code>Buffer</code>类都有一个<code>allocate</code>方法。下面是一个分配48字节<code>capacity</code>的<code>ByteBuffer</code>的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ByteBuffer buf = ByteBuffer.allocate(48);</span><br></pre></td></tr></table></figure>
+
+<p>这是分配一个可存储1024个字符的<code>CharBuffer</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CharBuffer buf = CharBuffer.allocate(1024);</span><br></pre></td></tr></table></figure>
+
+<h2 id="向Buffer中写数据"><a href="#向Buffer中写数据" class="headerlink" title="向Buffer中写数据"></a>向Buffer中写数据</h2><p>写数据到<code>Buffer</code>有两种方式：</p>
+<ol>
+<li>从<code>Channel</code>写到<code>Buffer</code>。</li>
+<li>通过<code>Buffer</code>的<code>put()</code>方法写到<code>Buffer</code>里。</li>
+</ol>
+<p>从Channel写到Buffer的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int bytesRead = inChannel.read(buf); //read into buffer.</span><br></pre></td></tr></table></figure>
+
+<p>通过put方法写Buffer的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.put(127);</span><br></pre></td></tr></table></figure>
+
+<p>put方法有很多版本，允许你以不同的方式把数据写入到Buffer中。例如， 写到一个指定的位置，或者把一个字节数组写入到Buffer。 更多Buffer实现的细节参考JavaDoc。</p>
+<h3 id="flip-方法"><a href="#flip-方法" class="headerlink" title="flip()方法"></a>flip()方法</h3><p><code>flip</code>方法将<code>Buffer</code>从写模式切换到读模式。调用<code>flip()</code>方法会将<code>position</code>设回0，并将<code>limit</code>设置成之前<code>position</code>的值。</p>
+<p>换句话说，<code>position</code>现在用于标记读的位置，<code>limit</code>表示之前写进了多少个<code>byte</code>、<code>char</code>等 —— 现在能读取多少个<code>byte</code>、<code>char</code>等。</p>
+<h2 id="从Buffer中读取数据"><a href="#从Buffer中读取数据" class="headerlink" title="从Buffer中读取数据"></a>从Buffer中读取数据</h2><p>从<code>Buffer</code>中读取数据有两种方式：</p>
+<ol>
+<li>从<code>Buffer</code>读取数据到<code>Channel</code>。</li>
+<li>使用<code>get()</code>方法从<code>Buffer</code>中读取数据。</li>
+</ol>
+<p>从<code>Buffer</code>读取数据到<code>Channel</code>的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//从buffer中读取数据到channel.</span><br><span class="line">int bytesWritten = inChannel.write(buf);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>get()</code>方法从<code>Buffer</code>中读取数据的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte aByte = buf.get();</span><br></pre></td></tr></table></figure>
+
+<p><code>get</code>方法有很多版本，允许你以不同的方式从<code>Buffer</code>中读取数据。例如，从指定<code>position</code>读取，或者从<code>Buffer</code>中读取数据到字节数组。更多<code>Buffer</code>实现的细节参考JavaDoc。</p>
+<h3 id="rewind-方法"><a href="#rewind-方法" class="headerlink" title="rewind()方法"></a>rewind()方法</h3><p><code>Buffer.rewind()</code>将<code>position</code>设回0，所以你可以重读<code>Buffer</code>中的所有数据。<code>limit</code>保持不变，仍然表示能从<code>Buffer</code>中读取多少个元素（<code>byte</code>、<code>char</code>等）。</p>
+<h3 id="clear-与compact-方法"><a href="#clear-与compact-方法" class="headerlink" title="clear()与compact()方法"></a>clear()与compact()方法</h3><p>一旦读完<code>Buffer</code>中的数据，需要让<code>Buffer</code>准备好再次被写入。可以通过<code>clear()</code>或<code>compact()</code>方法来完成。</p>
+<p>如果调用的是<code>clear()</code>方法，<code>position</code>将被设回0，<code>limit</code>被设置成 <code>capacity</code>的值。换句话说，<code>Buffer</code> 被清空了。<code>Buffer</code>中的数据并未清除，只是这些标记告诉我们可以从哪里开始往Buffer里写数据。</p>
+<p>如果<code>Buffer</code>中有一些未读的数据，调用<code>clear()</code>方法，数据将“被遗忘”，意味着不再有任何标记会告诉你哪些数据被读过，哪些还没有。</p>
+<p>如果<code>Buffer</code>中仍有未读的数据，且后续还需要这些数据，但是此时想要先写些数据，那么使用<code>compact()</code>方法。</p>
+<p><code>compact()</code>方法将所有未读的数据拷贝到<code>Buffer</code>起始处。然后将<code>position</code>设到最后一个未读元素正后面。<code>limit</code>属性依然像<code>clear()</code>方法一样，设置成<code>capacity</code>。现在<code>Buffer</code>准备好写数据了，但是不会覆盖未读的数据。</p>
+<h3 id="mark-与reset-方法"><a href="#mark-与reset-方法" class="headerlink" title="mark()与reset()方法"></a>mark()与reset()方法</h3><p>通过调用<code>Buffer.mark()</code>方法，可以标记<code>Buffer</code>中的一个特定<code>position</code>。之后可以通过调用<code>Buffer.reset()</code>方法恢复到这个<code>position</code>。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">buffer.mark();</span><br><span class="line"></span><br><span class="line">//调用几次buffer.get()方法。例如在解析过程中</span><br><span class="line"></span><br><span class="line">buffer.reset();  //设置position恢复到标记的位置.</span><br></pre></td></tr></table></figure>
+
+<h3 id="equals-与compareTo-方法"><a href="#equals-与compareTo-方法" class="headerlink" title="equals()与compareTo()方法"></a>equals()与compareTo()方法</h3><p>可以使用<code>equals()</code>和<code>compareTo()</code>方法比较两个<code>Buffer</code>。</p>
+<h4 id="equals"><a href="#equals" class="headerlink" title="equals()"></a>equals()</h4><p>当满足下列条件时，表示两个Buffer相等：</p>
+<ol>
+<li>有相同的类型（<code>byte</code>、<code>char</code>、<code>int</code>等）。</li>
+<li><code>Buffer</code>中剩余的<code>byte</code>、<code>char</code>等的个数相等。</li>
+<li><code>Buffer</code>中所有剩余的<code>byte</code>、<code>char</code>等都相同。</li>
+</ol>
+<p>如你所见，<code>equals</code>只是比较<code>Buffer</code>的一部分，不是每一个在它里面的元素都比较。实际上，它只比较<code>Buffer</code>中的剩余元素。</p>
+<h4 id="compareTo-方法"><a href="#compareTo-方法" class="headerlink" title="compareTo()方法"></a>compareTo()方法</h4><p><code>compareTo()</code>方法比较两个<code>Buffer</code>的剩余元素(<code>byte</code>、<code>char</code>等)， 如果满足下列条件，则认为一个<code>Buffer</code>“小于”另一个<code>Buffer</code>：</p>
+<ol>
+<li>第一个不相等的元素小于另一个Buffer中对应的元素 。</li>
+<li>所有元素都相等，但第一个Buffer比另一个先耗尽(第一个Buffer的元素个数比另一个少)。</li>
+</ol>
+<p>（译注：剩余元素是从 position到limit之间的元素）</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -249,184 +346,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/15/Java-NIO-教程-3-Buffer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-2-Channel/" class="archive-article-date">
-  	<time datetime="2019-09-14T16:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/09/15/Java-NIO-教程-4-Scatter-Gather/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java NIO 教程 4 Scatter Gather
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/14/Java-NIO-教程-2-Channel/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java NIO 教程 2 Channel</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-2-Channel/">Java NIO 教程 2 Channel</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-1-概述/" class="archive-article-date">
-  	<time datetime="2019-09-14T16:03:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-1-概述/">Java NIO 教程 1 概述</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/14/Java-NIO-教程-0/" class="archive-article-date">
-  	<time datetime="2019-09-14T15:11:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/14/Java-NIO-教程-0/">Java NIO 教程 0</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/13/hello-world/" class="archive-article-date">
-  	<time datetime="2019-09-13T15:18:35.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/13/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -449,8 +477,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
